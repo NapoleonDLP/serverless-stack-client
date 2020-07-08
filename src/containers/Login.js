@@ -11,6 +11,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
 
   function validateForm() {
@@ -19,6 +20,8 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    setIsLoading(true);
 
     try {
       await Auth.signIn(email, password);
