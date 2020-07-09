@@ -10,12 +10,12 @@ import { s3Upload } from "../libs/awsLib";
 
 export default function Notes() {
   const file = useRef(null);
-const { id } = useParams();
-const history = useHistory();
-const [note, setNote] = useState(null);
-const [content, setContent] = useState("");
-const [isLoading, setIsLoading] = useState(false);
-const [isDeleting, setIsDeleting] = useState(false);
+  const history = useHistory();
+  const { id } = useParams();
+  const [note, setNote] = useState(null);
+  const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     function loadNote() {

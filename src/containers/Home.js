@@ -5,9 +5,11 @@ import { onError } from "../libs/errorLib";
 import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
+// import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([])
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,6 +37,7 @@ export default function Home() {
   }
 
   function renderNotesList(notes) {
+
     return [{}].concat(notes).map((note, i) =>
       i !== 0 ? (
         <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
@@ -63,12 +66,38 @@ export default function Home() {
     );
   }
 
+  function handleInputChange(e) {
+    let searchResults = [];
+
+    for (var i = 0; i < notes.length; i++) {
+      var lowerCaseContent = notes[i].content.toLowerCase()
+      if (lowerCaseContent.includes(e.target.value.toLowerCase())) {
+        searchResults.push(notes[i]);
+      }
+      setSearchTerm(searchResults);
+    }
+  }
+
+  // function handleSubmit(e) {
+  //   // e.preventDefault();
+  //   console.log("Submitted",e)
+  //   // setNotes(notes)
+  // }
+
   function renderNotes() {
+
     return (
       <div className="notes">
         <PageHeader>Your Notes</PageHeader>
+          <div name="search bar">
+            <form>
+              <label>
+              <input onChange={handleInputChange} type="text" name ></input>
+              </label>
+            </form>
+        </div>
         <ListGroup>
-          {!isLoading && renderNotesList(notes)}
+          {!isLoading && searchTerm.length === 0 ? renderNotesList(notes) : renderNotesList(searchTerm)}
         </ListGroup>
       </div>
     );
