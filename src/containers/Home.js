@@ -92,7 +92,7 @@ export default function Home() {
           <div name="search bar">
             <form>
               <label>
-              <input onChange={handleInputChange} type="text" name ></input>
+              <input placeholder="Search" onChange={handleInputChange} type="text" name ></input>
               </label>
             </form>
         </div>
