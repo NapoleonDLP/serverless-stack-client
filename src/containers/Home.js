@@ -5,7 +5,6 @@ import { onError } from "../libs/errorLib";
 import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
-// import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
@@ -78,12 +77,6 @@ export default function Home() {
     }
   }
 
-  // function handleSubmit(e) {
-  //   // e.preventDefault();
-  //   console.log("Submitted",e)
-  //   // setNotes(notes)
-  // }
-
   function renderNotes() {
 
     return (
@@ -92,9 +85,10 @@ export default function Home() {
           <div name="search bar">
             <form>
               <label>
-              <input placeholder="Search" onChange={handleInputChange} type="text" name ></input>
+              <input placeholder="&#xF002;" class="fontAwesome" onChange={handleInputChange} type="text" name ></input>
               </label>
             </form>
+
         </div>
         <ListGroup>
           {!isLoading && searchTerm.length === 0 ? renderNotesList(notes) : renderNotesList(searchTerm)}
