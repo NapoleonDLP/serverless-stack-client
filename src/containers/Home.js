@@ -77,13 +77,17 @@ export default function Home() {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   function renderNotes() {
 
     return (
       <div className="notes">
         <PageHeader>Your Notes</PageHeader>
           <div name="search bar">
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>
               <input placeholder="&#xF002;" class="fontAwesome" onChange={handleInputChange} type="text" name ></input>
               </label>
