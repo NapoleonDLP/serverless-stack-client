@@ -89,7 +89,7 @@ export default function Home() {
           <div name="search bar">
             <form onSubmit={handleSubmit}>
               <label>
-              <input placeholder="&#xF002;" class="fontAwesome" onChange={handleInputChange} type="text" name ></input>
+              <input placeholder="&#xF002; Search" className="fontAwesome" onChange={handleInputChange} type="text" name ></input>
               </label>
             </form>
 
