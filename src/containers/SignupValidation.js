@@ -11,6 +11,13 @@ export default function verify(props) {
     number: false
   }
 
+  var specialCharacters = {
+    "^":"^", "$":"$", "*":"*", ".":".", "[":"[", "]":"]", "{":"{", "}":"}", "(":"(",")":")", "?":"?", '"':'"', "!":"!", "@":"@", "#":"#", "%":"%", "&":"&", "/":"/", "\\":"\\", ",":",", ">":">", "<":"<", "'":"'", ":":":", ";":";", "|":"|", "_":"_", "~":"~", "`":"`"
+  }
+
+  var numbers = {
+    1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 0:0
+  };
 
   if (props.password.length >= 8) {
     qualifiers.length = true;
@@ -24,7 +31,16 @@ export default function verify(props) {
     qualifiers.lowercase = true;
   }
 
-  //TODO: Check to see if password contains number and special char
+  for (var i = 0; i < props.password.length; i++) {
+    if (numbers[props.password[i]] !== undefined) {
+      qualifiers.number = true;
+    }
+
+    if (specialCharacters[props.password[i]] !== undefined) {
+      qualifiers.specialCharacter = true;
+    }
+  }
+
 
   if (props.password.length > 0) {
     return (
