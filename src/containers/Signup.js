@@ -12,6 +12,7 @@ import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
+import Verify from './SignupValidation';
 
 export default function Signup() {
   const [fields, handleFieldChange] = useFormFields({
@@ -116,6 +117,9 @@ export default function Signup() {
             type="password"
             value={fields.password}
             onChange={handleFieldChange}
+          />
+          <Verify
+            password={fields.password}
           />
         </FormGroup>
         <FormGroup controlId="confirmPassword" bsSize="large">
