@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Accordion } from "react-bootstrap";
+import React from "react";
 import "./SignupValidation.css"
 
 export default function verify(props) {
