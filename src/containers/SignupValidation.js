@@ -62,6 +62,6 @@ export default function verify(props) {
       </div>
     )
   } else {
-    return <div></div>
+    return null
   }
 }
