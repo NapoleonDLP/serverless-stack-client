@@ -2,7 +2,6 @@ import React from "react";
 import "./SignupValidation.css"
 
 export default function verify(props) {
-  console.log("Password:",props.password)
   var qualifiers = {
     length:false,
     uppercase:false,
