@@ -13,6 +13,7 @@ import { onError } from "../libs/errorLib";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
 import Verify from './SignupValidation';
+import PasswordConfirmation from "./PasswordConfirmation";
 
 export default function Signup() {
   const [fields, handleFieldChange] = useFormFields({
@@ -128,6 +129,10 @@ export default function Signup() {
             type="password"
             onChange={handleFieldChange}
             value={fields.confirmPassword}
+          />
+          <PasswordConfirmation
+            password={fields.password}
+            confirmPassword={fields.confirmPassword}
           />
         </FormGroup>
         <LoaderButton
