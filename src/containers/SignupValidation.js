@@ -45,19 +45,19 @@ export default function verify(props) {
     return (
       <div>
         <div >
-          <small className={qualifiers.length ? "green" : null}> At least 8 characters long.</small>
+          <small data-testid="char-length" className={qualifiers.length ? "green" : null}> At least 8 characters long.</small>
         </div>
         <div>
-          <small className={qualifiers.uppercase ? "green" : null}>Contain uppercase letters.</small>
+          <small data-testid="uppercase" className={qualifiers.uppercase ? "green" : null}>Contain uppercase letters.</small>
         </div>
         <div>
-          <small className={qualifiers.lowercase ? "green" : null}>Contain lowercase letters.</small>
+          <small data-testid="lowercase" className={qualifiers.lowercase ? "green" : null}>Contain lowercase letters.</small>
         </div>
         <div>
-          <small className={qualifiers.number ? "green" : null}>Contain numbers.</small>
+          <small data-testid="numbers" className={qualifiers.number ? "green" : null}>Contain numbers.</small>
         </div>
         <div>
-          <small className={qualifiers.specialCharacter ? "green" : null}>Contain special characters.</small>
+          <small data-testid="special-characters" className={qualifiers.specialCharacter ? "green" : null}>Contain special characters.</small>
         </div>
       </div>
     )
