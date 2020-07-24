@@ -6,6 +6,7 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
+import RecipeSearchContainer from "./RecipeSearch.js";
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
@@ -91,7 +92,6 @@ export default function Home() {
   }
 
   function renderNotes() {
-
     return (
       <div className="notes">
         <PageHeader>Your Notes</PageHeader>
@@ -111,8 +111,15 @@ export default function Home() {
   }
 
   return (
+    <div className="home-page">
     <div className="Home">
-      {isAuthenticated ? renderNotes() : renderLander()}
+      <div>
+        {isAuthenticated ? renderNotes() : renderLander()}
+      </div>
+    </div>
+    <div className="recipe-search-container">
+      <RecipeSearchContainer />
+    </div>
     </div>
   );
 }
