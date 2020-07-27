@@ -523,10 +523,10 @@ var sampleRecipes = [
       }
 ];
 
-var resultsData = {
-  "offset": 0,
-  "number": 2,
-  "totalResults": 2145
-};
+// var resultsData = {
+//   "offset": 0,
+//   "number": 2,
+//   "totalResults": 2145
+// };
 
 export default sampleRecipes;
