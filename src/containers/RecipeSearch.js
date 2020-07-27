@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React /* , { useState, useEffect } */ from "react";
 import sampleRecipes from "../mocks/recipes.js";
 // import { useAppContext } from "../libs/contextLib";
 // import { onError } from "../libs/errorLib";
-import { Carousel } from 'react-bootstrap';
-
 
 export default function RecipeSearch() {
   // update state by api call
