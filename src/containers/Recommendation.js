@@ -40,7 +40,8 @@ export default function Recommendation() {
       <h2>Recommended Recipes</h2>
       <Carousel>
         {recommendedRecipes.map((recipe, i) => {
-          if (recipe.image) {
+          //TODO: Ensure carousel doesnt render blank image
+          // if (recipe.image) {
             return (
               <Carousel.Item key={i} onClick={() => console.log("Clicked")}>
                 <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
@@ -53,9 +54,9 @@ export default function Recommendation() {
                 </Carousel.Caption>
                 </Carousel.Item>
             )
-          } else {
-            return null;
-          }
+          // } else {
+          //   return null;
+          // }
         })}
       </Carousel>
     </div>
