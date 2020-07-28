@@ -8,32 +8,33 @@ import { Link } from "react-router-dom";
 export default function Recommendation() {
   const [recommendedRecipes, setRecommendedRecipes] = useState([]);
   const { isAuthenticated } = useAppContext();
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function onLoad() {
-      // if (!isAuthenticated) {
-      //   return;
-      // }
+      //TODO: Fix bug that allows for recommendation even when not authorized
+      if (!isAuthenticated) {
+          return;
+        }
 
-      try {
-        const recipes = await retrieveRecommendedRecipes();
-        console.log("List of recipes:", recipes)
-        setRecommendedRecipes(recipes.recipes);
-      } catch (e) {
-        onError(e);
+        try {
+          const recipes = await retrieveRecommendedRecipes();
+          console.log("List of recipes:", recipes)
+          setRecommendedRecipes(recipes.recipes);
+        } catch (e) {
+          onError(e);
+        }
+
+        setIsLoading(false);
       }
 
-      // setIsLoading(false);
-    }
+      onLoad();
+      }, [isAuthenticated]);
 
-    onLoad();
-  }, [isAuthenticated]);
-
-  var retrieveRecommendedRecipes = function() {
-    return fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=5`)
-    .then((data) => data.json())
-  }
+      var retrieveRecommendedRecipes = function() {
+        return fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=5`)
+        .then((data) => data.json())
+      }
 
     return (
       <div className="recipes">
