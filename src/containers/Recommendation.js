@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import { Carousel } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 export default function Recommendation() {
@@ -34,21 +35,23 @@ export default function Recommendation() {
     .then((data) => data.json())
   }
 
-  return (
-    <div className="recipes">
+    return (
+      <div className="recipes">
       <h2>Recommended Recipes</h2>
       <Carousel>
         {recommendedRecipes.map((recipe, i) => {
           if (recipe.image) {
             return (
-              <Carousel.Item key={i} onClick={() => console.log(`${recipe.title} was clicked!`)}>
-                <img width={"100%"} height={"100%"} alt="900x500" src={`${recipe.image}`} />
-              <Carousel.Caption>
-                <h2 className="carousel-title">{recipe.title}</h2>
-                {/* TODO: Adjust summary */}
-                {/* <p>{recipe.summary}</p>/ */}
-              </Carousel.Caption>
-              </Carousel.Item>
+              <Carousel.Item key={i} onClick={() => console.log("Clicked")}>
+                <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
+                  <img width={"100%"} height={"100%"} alt="900x500" src={`${recipe.image}`} />
+                </Link>
+                <Carousel.Caption>
+                  <h2 className="carousel-title">{recipe.title}</h2>
+                  {/* TODO: Adjust summary */}
+                  {/* <p>{recipe.summary}</p>/ */}
+                </Carousel.Caption>
+                </Carousel.Item>
             )
           } else {
             return null;
