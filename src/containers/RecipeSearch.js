@@ -41,11 +41,11 @@ export default function RecipeSearch() {
 
   return (
     <div className="recipes">
-        {sampleRecipes.map((recipe) => {
+        {sampleRecipes.map((recipe, i) => {
           return (
-          <div onClick={() => console.log(`${recipe.title} was clicked!`)} className="recipe">
+          <div key={i} onClick={() => console.log(`${recipe.title} was clicked!`)} className="recipe">
               <h2>{recipe.title}</h2>
-              <img class="recipe-image" alt="" src={`${recipe.image}`}></img>
+              <img className="recipe-image" alt="" src={`${recipe.image}`}></img>
           </div>
         )})}
     </div>
