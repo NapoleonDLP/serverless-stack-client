@@ -13,9 +13,9 @@ export default function Recommendation() {
   useEffect(() => {
     async function onLoad() {
       //TODO: Fix bug that allows for recommendation even when not authorized
-      if (!isAuthenticated) {
-          return;
-        }
+      // if (!isAuthenticated) {
+      //     return;
+      //   }
 
         try {
           const recipes = await retrieveRecommendedRecipes();
@@ -31,7 +31,7 @@ export default function Recommendation() {
       onLoad();
       }, [isAuthenticated]);
 
-      var retrieveRecommendedRecipes = function() {
+      var retrieveRecommendedRecipes = async function() {
         return fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=5`)
         .then((data) => data.json())
       }
@@ -42,7 +42,7 @@ export default function Recommendation() {
       <Carousel>
         {recommendedRecipes.map((recipe, i) => {
           //TODO: Ensure carousel doesnt render blank image
-          // if (recipe.image) {
+          if (recipe.image) {
             return (
               <Carousel.Item key={i} onClick={() => console.log("Clicked")}>
                 <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
@@ -50,14 +50,12 @@ export default function Recommendation() {
                 </Link>
                 <Carousel.Caption>
                   <h2 className="carousel-title">{recipe.title}</h2>
-                  {/* TODO: Adjust summary */}
-                  {/* <p>{recipe.summary}</p>/ */}
                 </Carousel.Caption>
                 </Carousel.Item>
             )
-          // } else {
-          //   return null;
-          // }
+          } else {
+            return null;
+          }
         })}
       </Carousel>
     </div>
