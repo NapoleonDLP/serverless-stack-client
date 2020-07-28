@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Recommendation() {
   const [recommendedRecipes, setRecommendedRecipes] = useState([]);
   const { isAuthenticated } = useAppContext();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function onLoad() {
@@ -25,7 +25,7 @@ export default function Recommendation() {
           onError(e);
         }
 
-        setIsLoading(false);
+        // setIsLoading(false);
       }
 
       onLoad();
