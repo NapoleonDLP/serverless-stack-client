@@ -50,6 +50,8 @@ export default function Recommendation() {
               </Carousel.Caption>
               </Carousel.Item>
             )
+          } else {
+            return null;
           }
         })}
       </Carousel>
