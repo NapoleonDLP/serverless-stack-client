@@ -16,7 +16,7 @@ export default function Recipe() {
 
         <Panel.Body>
           <div>
-            <img alt={recipe.title} src={`${recipe.image}`}></img>
+            <img width={"100%"} height={"100%"} alt={recipe.title} src={`${recipe.image}`}></img>
           </div>
 
             <Panel>
@@ -54,10 +54,10 @@ export default function Recipe() {
 
         </Panel.Body>
 
+        <p>
+          <Badge>{recipe.aggregateLikes}</Badge> Likes
+        </p>
       </Panel>
-      <p>
-        <Badge>{recipe.aggregateLikes}</Badge> Likes
-      </p>
     </div>
   )
 }
