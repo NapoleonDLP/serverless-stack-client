@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Badge, Panel, ListGroup, ListGroupItem } from "react-bootstrap";
+import "./Recipe.css"
 
 
 export default function Recipe() {
@@ -53,10 +54,9 @@ export default function Recipe() {
             </Panel>
 
         </Panel.Body>
-
-        <p>
+        <div id="likes">
           <Badge>{recipe.aggregateLikes}</Badge> Likes
-        </p>
+        </div>
       </Panel>
     </div>
   )
