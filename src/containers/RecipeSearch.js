@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import sampleRecipes from "../mocks/recipes.js";
 import "./RecipeSearch.css";
 // import { Grid } from "react-bootstrap";
