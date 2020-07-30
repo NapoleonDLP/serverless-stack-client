@@ -3,6 +3,7 @@ import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import { Carousel } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import "./Recommendation.css";
 
 
 export default function Recommendation() {
@@ -19,7 +20,7 @@ export default function Recommendation() {
 
         try {
           const recipes = await retrieveRecommendedRecipes();
-          console.log("List of recipes:", recipes)
+          console.log("List of recipes:", recipes.recipes)
           setRecommendedRecipes(recipes.recipes);
         } catch (e) {
           onError(e);
@@ -41,12 +42,13 @@ export default function Recommendation() {
       <h2>Recommended Recipes</h2>
       <Carousel>
         {recommendedRecipes.map((recipe, i) => {
-          //TODO: Ensure carousel doesnt render blank image
           if (recipe.image) {
             return (
               <Carousel.Item key={i} onClick={() => console.log("Clicked")}>
                 <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
-                  <img width={"100%"} height={"100%"} alt="900x500" src={`${recipe.image}`} />
+                  <div className="carousel-image">
+                    <img width={"100%"} height={"100%"} alt="900x500" src={`${recipe.image}`} />
+                  </div>
                 </Link>
                 <Carousel.Caption>
                   <h2 className="carousel-title">{recipe.title}</h2>
