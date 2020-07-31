@@ -27,27 +27,6 @@ export default function RecipeSearch() {
     retrieveRecipes(searchTerm);
   }
 
-  var recipesGrid = function() {
-    var grid = [];
-    for (var i = 0; i < recipes.length; i += 3) {
-        var row = []
-        if (recipes[i] !== undefined) {
-            row.push(recipes[i])
-        }
-
-        if (recipes[i+1] !== undefined) {
-            row.push(recipes[i+1])
-        }
-
-        if (recipes[i+2] !== undefined) {
-            row.push(recipes[i+2])
-        }
-        grid.push(row)
-    }
-    return grid;
-}
-
-
   return (
     <div className="search-recipes">
       <h2>Search Your Favorite Recipes</h2>
@@ -57,40 +36,36 @@ export default function RecipeSearch() {
         </label>
       </form>
 
-
       <Grid>
-        {recipesGrid().map((row, i) => {
-          return (
-            <Row>
-              {row.map((recipe, i) => {
-                return (
-                  <Col xs={6} md={4}>
-                    <Thumbnail>
-                      <div key={i} onClick={() => console.log(`${recipe.title} was clicked!`)} id="recipe">
-                      <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
-                        <img className="recipe-image" alt="" src={`${recipe.image}`}></img>
-                        <h3 id="recipe-title">{recipe.title}</h3>
-                        {/* <small> */}
-                          <h6 id="author">{`By ${recipe.creditsText}`}</h6>
-                          <div className="recipe-tags">
-                            <div className="each-tag">
-                              <i id="clock" className="fa fa-clock-o" aria-hidden="true"></i>
-                              <small id="time">{recipe.readyInMinutes}</small>
-                            </div>
-                            <div className="each-tag">
-                              <small id="servings">{`Servings ${recipe.servings}`}</small>
-                            </div>
-                            <div className="each-tag">
-                              <small id="calories">{`Cal ${Math.trunc(recipe.nutrition.nutrients[0].amount)}`}</small>
-                            </div>
-                          </div>
-                      </Link>
+        <Row>
+          {recipes.map((recipe, i) => {
+            return (
+              <Col xs={6} md={4}>
+                <Thumbnail>
+                  <div key={i} onClick={() => console.log(`${recipe.title} was clicked!`)} id="recipe">
+                  <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
+                    <img className="recipe-image" alt="" src={`${recipe.image}`}></img>
+                    <h3 title={recipe.title} id="recipe-title">{recipe.title}</h3>
+                    {/* <small> */}
+                      <h6 id="author">{`By ${recipe.creditsText}`}</h6>
+                      <div className="recipe-tags">
+                        <div className="each-tag">
+                          <i id="clock" className="fa fa-clock-o" aria-hidden="true"></i>
+                          <small id="time">{recipe.readyInMinutes}</small>
+                        </div>
+                        <div className="each-tag">
+                          <small id="servings">{`Servings ${recipe.servings}`}</small>
+                        </div>
+                        <div className="each-tag">
+                          <small id="calories">{`Cal ${Math.trunc(recipe.nutrition.nutrients[0].amount)}`}</small>
+                        </div>
                       </div>
-                    </Thumbnail>
-                  </Col>
-              )})}
-            </Row>
-        )})}
+                  </Link>
+                  </div>
+                </Thumbnail>
+              </Col>
+          )})}
+        </Row>
       </Grid>
     </div>
   )
