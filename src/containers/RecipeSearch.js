@@ -15,7 +15,7 @@ export default function RecipeSearch() {
   useEffect(() => {
       async function onLoad() {
         try {
-          const delightfulRecipes = await retrieveRecipes("delightful", 3);
+          await retrieveRecipes("delightful", 3);
         } catch (e) {
           onError(e);
         }
