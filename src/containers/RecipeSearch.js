@@ -29,11 +29,8 @@ export default function RecipeSearch() {
 
   return (
     <div className="search-recipes">
-      <h2>Search Your Favorite Recipes</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          <input id="keyword-search" placeholder="&#xF002; Keywords" className="fontAwesome" onChange={handleInputChange} type="text" name></input>
-        </label>
+        <input id="keyword-search" placeholder="&#xF002; Search Thousands of Delightful Recipes" className="fontAwesome" onChange={handleInputChange} type="text" name></input>
       </form>
 
       <Grid>
