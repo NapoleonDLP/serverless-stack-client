@@ -1,6 +1,6 @@
 #keyword-search {
 letter-spacing: 0;
-    width: 60%;
+    width: 75%;
     display: block;
     outline: none;
     border-color:darkorange;
@@ -8,7 +8,7 @@ letter-spacing: 0;
     box-sizing: border-box;
     position: relative;
     margin: 45px auto;
-    font-size: 25px;
+    font-size: 15px;
     text-decoration: none;
     align-content: center;
     white-space: nowrap;
