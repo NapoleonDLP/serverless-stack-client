@@ -95,7 +95,7 @@ export default function Home() {
   function renderNotes() {
     return (
       <div className="notes">
-        <PageHeader>Your Notes</PageHeader>
+        <PageHeader>Your Saved Recipes</PageHeader>
           <div name="search bar">
             <form onSubmit={handleSubmit}>
               <label>
@@ -115,12 +115,12 @@ export default function Home() {
     <div className="home-page">
     <div className="Home">
       <RecipeRecommendation />
+    <div className="recipe-search-container">
+      <RecipeSearchContainer />
+    </div>
       <div>
         {isAuthenticated ? renderNotes() : renderLander()}
       </div>
-    </div>
-    <div className="recipe-search-container">
-      <RecipeSearchContainer />
     </div>
     </div>
   );
