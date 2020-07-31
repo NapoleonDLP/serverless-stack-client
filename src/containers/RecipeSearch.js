@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import sampleRecipes from "../mocks/recipes.js";
 import "./RecipeSearch.css";
 import { Grid , Thumbnail, Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { onError } from "../libs/errorLib";
+import { useAppContext } from "../libs/contextLib";
 
 export default function RecipeSearch() {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const { isAuthenticated } = useAppContext();
 
-  var retrieveRecipes = async function(keywords) {
-    return await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${keywords}&addRecipeInformation=true&number=9&instructionsRequired=true&fillIngredients=true&addRecipeNutrition=true`)
+
+  useEffect(() => {
+      async function onLoad() {
+        try {
+          const delightfulRecipes = await retrieveRecipes("delightful", 3);
+        } catch (e) {
+          onError(e);
+        }
+      }
+
+      onLoad();
+    }, [isAuthenticated]);
+
+  var retrieveRecipes = async function(keywords, resultCount = 9) {
+    return await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${keywords}&addRecipeInformation=true&number=${resultCount}&instructionsRequired=true&fillIngredients=true&addRecipeNutrition=true`)
     .then((data) => data.json())
     .then((recipes) => {
       console.log("Searched data:", recipes.results)
@@ -43,7 +59,6 @@ export default function RecipeSearch() {
                   <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
                     <img className="recipe-image" alt="" src={`${recipe.image}`}></img>
                     <h3 title={recipe.title} id="recipe-title">{recipe.title}</h3>
-                    {/* <small> */}
                       <h6 id="author">{`By ${recipe.creditsText}`}</h6>
                       <div className="recipe-tags">
                         <div className="each-tag">
