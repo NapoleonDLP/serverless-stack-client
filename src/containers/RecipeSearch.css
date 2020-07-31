@@ -1,3 +1,42 @@
 #keyword-search {
   width: 100%;
 }
+
+#recipe-title {
+  color: black;
+}
+
+.recipe-title {
+  color: black
+}
+
+#author {
+  color: #777;
+}
+
+.recipe-tags {
+  color: darkorange;
+  font-weight: bold;
+  display: inline;
+}
+
+#clock {
+  margin: 0 0 20px 0;
+}
+
+#time {
+  margin: 0 20px 20px 3px;
+}
+
+#servings {
+  margin: 0 20px 20px 0;
+}
+
+#calories {
+  align-content: flex-end;
+}
+
+.each-tag {
+  display: inline-block;
+  width: 104px;
+}
