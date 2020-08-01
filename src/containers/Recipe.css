@@ -1,7 +1,53 @@
-#likes {
-  margin: 0 0 20px 20px;
-}
-
 .panel {
   margin: 20px 0 0 0;
+}
+
+.tags-container {
+  margin: 0 0 20px 20px;
+  /* display: inline; */
+}
+
+#likes {
+  margin: 0 0 20px 20px;
+  display: inline;
+}
+
+
+/* Recipe Title & Image */
+.title-image {
+  display: inline-flex;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+#recipe-title {
+  width: 50%;
+  margin: 0 10px 0 0;
+  white-space: normal;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.recipe-image {
+  width: 50%;
+  margin: auto;
+  align-self: stretch;
+}
+
+#summary {
+  /* text-overflow: clip; */
+  color:darkorange;
+  margin: 0 10px 0 0;
+  white-space: normal;
+}
+
+
+.aggregateLikes {
+  display: inline;
+  margin: 0 2px 0 0;
+}
+
+.tags {
+  display: inline;
+  /* margin: 0 20px 20px 0; */
 }
