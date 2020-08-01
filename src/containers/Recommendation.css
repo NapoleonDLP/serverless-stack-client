@@ -1,11 +1,19 @@
 .carousel-image {
-  background-color: black;
+  width: 100%;
+  display: block;
 }
 
 .carousel-title {
-  color: black;
+  color: white;
+  display: block;
+  opacity: initial;
+  font-weight: bolder;
 }
 
-.carousel-indicators {
-  color: black;
+#caption {
+  background-color:black;
+  padding: 15px 15px;
+  opacity: 0.5;
+  border-radius: 25px;
+  position: relative;
 }
