@@ -57,9 +57,9 @@ export default function RecipeSearch() {
                 <Thumbnail>
                   <div key={i} onClick={() => console.log(`${recipe.title} was clicked!`)} id="recipe">
                   <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
-                    <img className="recipe-image" alt="" src={`${recipe.image}`}></img>
-                    <h3 title={recipe.title} id="recipe-title">{recipe.title}</h3>
-                      <h6 id="author">{`By ${recipe.creditsText}`}</h6>
+                    <img alt="" src={`${recipe.image}`}></img>
+                    <h3 title={recipe.title} id="grid-recipe-title">{recipe.title}</h3>
+                      <h6 className="author">{`By ${recipe.sourceName}`}</h6>
                       <div className="recipe-tags">
                         <div className="each-tag">
                           <i id="clock" className="fa fa-clock-o" aria-hidden="true"></i>
