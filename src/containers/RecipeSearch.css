@@ -24,7 +24,7 @@ letter-spacing: 0;
   margin: center;
 } */
 
-#recipe-title {
+#grid-recipe-title {
   color: black;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -35,7 +35,7 @@ letter-spacing: 0;
   color: black
 }
 
-#author {
+.author {
   color: #777;
 }
 
