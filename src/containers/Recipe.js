@@ -2,6 +2,7 @@ import React from "react"
 import { useHistory } from "react-router-dom";
 import { Badge, Panel, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Recipe.css";
+import Heart from "../components/HeartButton.js";
 
 export default function Recipe() {
   var history = useHistory();
@@ -18,6 +19,9 @@ export default function Recipe() {
             </div>
 
             <div id="recipe-image">
+              <div id="recipe-heart">
+                <Heart recipe={recipe}/>
+              </div>
               <img width={"100%"} height={"100%"} alt={recipe.title} src={`${recipe.image}`}></img>
             </div>
           </div>

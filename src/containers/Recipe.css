@@ -29,9 +29,11 @@
 }
 
 .recipe-image {
+  border-radius: 5px;
   width: 50%;
   margin: auto;
   align-self: stretch;
+  position: relative
 }
 
 #summary {
@@ -49,5 +51,20 @@
 
 .tags {
   display: inline;
-  /* margin: 0 20px 20px 0; */
+}
+
+#recipe-heart  {
+  font-size: 40px;
+  position: absolute;
+  z-index: 1;
+  border: 15px solid black;
+  margin: 1.5% 0 0 35%;
+  background-color: black;
+  border-radius: 40px;
+  opacity: 0.5;
+  line-height: 98%;
+}
+
+img {
+  border-radius: 5px;
 }

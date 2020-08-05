@@ -42,7 +42,7 @@ letter-spacing: 0;
 .recipe-tags {
   color: darkorange;
   font-weight: bold;
-  display: inline;
+  /* display: inline; */
 }
 
 #clock {
@@ -64,4 +64,8 @@ letter-spacing: 0;
 .each-tag {
   display: inline-block;
   width: 104px;
+}
+
+.recipe-search-heart {
+  display: inline-block;
 }

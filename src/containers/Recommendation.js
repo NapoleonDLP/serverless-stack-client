@@ -4,6 +4,7 @@ import { onError } from "../libs/errorLib";
 import { Carousel } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "./Recommendation.css";
+import Heart from "../components/HeartButton.js";
 
 
 export default function Recommendation() {
@@ -45,7 +46,7 @@ export default function Recommendation() {
         {recommendedRecipes.map((recipe, i) => {
           if (recipe.image) {
             return (
-              <Carousel.Item key={i} onClick={() => console.log("Clicked")}>
+              <Carousel.Item key={i}>
                 <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
                   <div className="carousel-image">
                     <img width={"100%"} height={"100%"} alt="900x500" src={`${recipe.image}`} />
@@ -64,6 +65,11 @@ export default function Recommendation() {
                         </div>
                         <div className="each-tag">
                           <small id="calories">{`Cal 150`}</small>
+                        </div>
+                        {/* <div className="each-tag">
+                        </div> */}
+                        <div id="carousel-tag-heart">
+                          <Heart recipe={recipe}/>
                         </div>
                       </div>
                 </div>

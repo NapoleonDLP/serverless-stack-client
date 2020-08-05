@@ -17,3 +17,12 @@
   border-radius: 25px;
   position: relative;
 }
+
+#carousel-tag-heart {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.carousel-indicators {
+  opacity: 0.5;
+}
