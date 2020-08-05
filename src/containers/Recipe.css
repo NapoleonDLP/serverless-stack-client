@@ -28,7 +28,7 @@
   flex-wrap: wrap;
 }
 
-.recipe-image {
+#recipe-image {
   border-radius: 5px;
   width: 50%;
   margin: auto;
@@ -58,7 +58,7 @@
   position: absolute;
   z-index: 1;
   border: 15px solid black;
-  margin: 1.5% 0 0 35%;
+  margin: 20px 0 0 82%;
   background-color: black;
   border-radius: 40px;
   opacity: 0.5;
