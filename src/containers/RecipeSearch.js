@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./RecipeSearch.css";
-import { Grid , Thumbnail, Col, Row} from "react-bootstrap";
+import { Thumbnail, Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { onError } from "../libs/errorLib";
 import { useAppContext } from "../libs/contextLib";
