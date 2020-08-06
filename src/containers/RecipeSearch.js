@@ -6,7 +6,7 @@ import { onError } from "../libs/errorLib";
 import { useAppContext } from "../libs/contextLib";
 import Heart from "../components/HeartButton.js";
 
-export default function RecipeSearch() {
+export default function RecipeSearch(props) {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const { isAuthenticated } = useAppContext();
@@ -49,13 +49,11 @@ export default function RecipeSearch() {
         <input title="Search Thousands of Delightful Recipes"id="keyword-search" placeholder="&#xF002; Search Thousands of Delightful Recipes" className="fontAwesome" onChange={handleInputChange} type="text" name></input>
       </form>
         <Row>
-        <div>
-
           {recipes.map((recipe, i) => {
             return (
               <Col xs={6} md={4}>
                 <Thumbnail>
-                  <div key={i} onClick={() => console.log(`${recipe.title} was clicked!`)} id="recipe">
+                  <div key={i} id="recipe">
                     <Link to={{pathname:`recipes/${recipe.id}`, state: recipe}}>
                       <img alt="" src={`${recipe.image}`}></img>
                       <h3 title={recipe.title} id="grid-recipe-title">{recipe.title}</h3>
@@ -73,14 +71,13 @@ export default function RecipeSearch() {
                         <small id="calories">{`Cal ${Math.trunc(recipe.nutrition.nutrients[0].amount)}`}</small>
                       </div>
                       <div className="recipe-search-heart">
-                        <Heart recipe={recipe}/>
+                        <Heart savedRecipes={props.savedRecipes} recipe={recipe}/>
                       </div>
                     </div>
                   </div>
                 </Thumbnail>
               </Col>
           )})}
-        </div>
         </Row>
     </div>
   )
