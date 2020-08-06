@@ -7,7 +7,7 @@ import "./Recommendation.css";
 import Heart from "../components/HeartButton.js";
 
 
-export default function Recommendation() {
+export default function Recommendation(props) {
   const [recommendedRecipes, setRecommendedRecipes] = useState([]);
   const { isAuthenticated } = useAppContext();
   // const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,6 @@ export default function Recommendation() {
 
         try {
           const recipes = await retrieveRecommendedRecipes();
-          console.log("List of recipes:", recipes.recipes)
           setRecommendedRecipes(recipes.recipes);
         } catch (e) {
           onError(e);
@@ -69,7 +68,7 @@ export default function Recommendation() {
                         {/* <div className="each-tag">
                         </div> */}
                         <div id="carousel-tag-heart">
-                          <Heart recipe={recipe}/>
+                          <Heart savedRecipes={props.savedRecipes} recipe={recipe}/>
                         </div>
                       </div>
                 </div>
