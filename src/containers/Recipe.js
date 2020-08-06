@@ -1,13 +1,39 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom";
 import { Badge, Panel, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Recipe.css";
 import Heart from "../components/HeartButton.js";
+import { API } from "aws-amplify";
 
-export default function Recipe() {
+export default function Recipe(props) {
   var history = useHistory();
   var recipe = history.location.state;
+  const [ savedRecipes, setSavedRecipes] = useState([]);
 
+  useEffect(() => {
+    async function onLoad() {
+      try {
+        let notes = await loadNotes();
+        setSavedRecipes(filterRecipes(notes));
+
+      } catch (e) {
+        // onError(e);
+        console.log("Error in Saved Recipe:", e)
+      }
+    }
+
+    onLoad();
+  }, [])
+
+  function loadNotes() {
+    return API.get("notes", "/notes");
+  }
+
+  function filterRecipes(notes) {
+    return notes.filter((recipe) => recipe.recipe !== undefined)
+  }
+
+  console.log("Saved from RECIPE", savedRecipes)
   return (
       <Panel className="recipe-panel">
         <Panel.Body>
@@ -20,7 +46,7 @@ export default function Recipe() {
 
             <div id="recipe-image">
               <div id="recipe-heart">
-                <Heart recipe={recipe}/>
+                <Heart savedRecipes={savedRecipes} recipe={recipe}/>
               </div>
               <img width={"100%"} height={"100%"} alt={recipe.title} src={`${recipe.image}`}></img>
             </div>
