@@ -10,7 +10,6 @@ export default function RecipeSearch(props) {
   const [searchTerm, setSearchTerm] = useState('');
   const { isAuthenticated } = useAppContext();
 
-
   useEffect(() => {
       async function onLoad() {
         try {
@@ -69,7 +68,9 @@ export default function RecipeSearch(props) {
                         <small id="calories">{`Cal ${Math.trunc(recipe.nutrition.nutrients[0].amount)}`}</small>
                       </div>
                       <div className="recipe-search-heart">
-                        <Heart savedRecipes={props.savedRecipes} recipe={recipe}/>
+                        <Heart
+                          updateSavedRecipes={props.updateSavedRecipes}
+                          savedRecipes={props.savedRecipes} recipe={recipe}/>
                       </div>
                     </div>
                   </div>

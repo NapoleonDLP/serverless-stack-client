@@ -61,7 +61,7 @@ export default function Recipe(props) {
 
             <div id="recipe-image">
               <div id="recipe-heart">
-                <Heart savedRecipes={savedRecipes} recipe={recipe}/>
+                <Heart updateSavedRecipes={props.updateSavedRecipes}savedRecipes={savedRecipes} recipe={recipe}/>
               </div>
               <img width={"100%"} height={"100%"} alt={recipe.title} src={`${recipe.image}`}></img>
             </div>

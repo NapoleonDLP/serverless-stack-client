@@ -58,7 +58,9 @@ export default function Recommendation(props) {
                         <small id="calories">{`Cal 150`}</small>
                       </div>
                       <div id="carousel-tag-heart">
-                        <Heart savedRecipes={props.savedRecipes} recipe={recipe}/>
+                        <Heart
+                          updateSavedRecipes={props.updateSavedRecipes}
+                          updateSavedNotes={props.updateSavedNotes} savedRecipes={props.savedRecipes} recipe={recipe}/>
                       </div>
                     </div>
                   </div>
