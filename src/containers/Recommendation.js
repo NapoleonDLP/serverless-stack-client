@@ -10,23 +10,15 @@ import Heart from "../components/HeartButton.js";
 export default function Recommendation(props) {
   const [recommendedRecipes, setRecommendedRecipes] = useState([]);
   const { isAuthenticated } = useAppContext();
-  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function onLoad() {
-      //TODO: Fix bug that allows for recommendation even when not authorized
-      // if (!isAuthenticated) {
-      //     return;
-      //   }
-
         try {
           const recipes = await retrieveRecommendedRecipes();
           setRecommendedRecipes(recipes.recipes);
         } catch (e) {
           onError(e);
         }
-
-        // setIsLoading(false);
       }
 
       onLoad();
@@ -51,29 +43,27 @@ export default function Recommendation(props) {
                     <img width={"100%"} height={"100%"} alt="900x500" src={`${recipe.image}`} />
                   </div>
                 </Link>
-                  <Carousel.Caption>
-                <div id="caption">
+                <Carousel.Caption>
+                  <div id="caption">
                     <h2 className="carousel-title">{recipe.title}</h2>
                     <div className="recipe-tags">
-                        <div className="each-tag">
-                          <i id="clock" className="fa fa-clock-o" aria-hidden="true"></i>
-                          <small id="time">{recipe.readyInMinutes}</small>
-                        </div>
-                        <div className="each-tag">
-                          <small id="servings">{`Servings ${recipe.servings}`}</small>
-                        </div>
-                        <div className="each-tag">
-                          <small id="calories">{`Cal 150`}</small>
-                        </div>
-                        {/* <div className="each-tag">
-                        </div> */}
-                        <div id="carousel-tag-heart">
-                          <Heart savedRecipes={props.savedRecipes} recipe={recipe}/>
-                        </div>
+                      <div className="each-tag">
+                        <i id="clock" className="fa fa-clock-o" aria-hidden="true"></i>
+                        <small id="time">{recipe.readyInMinutes}</small>
                       </div>
-                </div>
-                  </Carousel.Caption>
-                </Carousel.Item>
+                      <div className="each-tag">
+                        <small id="servings">{`Servings ${recipe.servings}`}</small>
+                      </div>
+                      <div className="each-tag">
+                        <small id="calories">{`Cal 150`}</small>
+                      </div>
+                      <div id="carousel-tag-heart">
+                        <Heart savedRecipes={props.savedRecipes} recipe={recipe}/>
+                      </div>
+                    </div>
+                  </div>
+                </Carousel.Caption>
+              </Carousel.Item>
             )
           } else {
             return null;
