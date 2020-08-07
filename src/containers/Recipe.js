@@ -15,10 +15,8 @@ export default function Recipe(props) {
       try {
         let notes = await loadNotes();
         setSavedRecipes(filterRecipes(notes));
-
       } catch (e) {
-        // onError(e);
-        console.log("Error in Saved Recipe:", e)
+        console.error(e)
       }
     }
 
@@ -33,16 +31,14 @@ export default function Recipe(props) {
       ["Vegan", "vegan"],
       ["Vegetarian", "vegetarian"],
       ["Popular", "veryPopular"]
-    ]
-      console.log(recipe)
-      return tags.map((tag, i) => {
-        console.log(i, recipe[tag[1]])
-        let color = recipe[tag[1]] ? "orange" : "grey";
-        console.log("COLOR", color)
+    ];
+
+    return tags.map((tag, i) => {
+      let color = recipe[tag[1]] ? "orange" : "grey";
         return (
           recipe[tag[1]] ? <p className={`tags tags-each ${color}`}>{tag[0]}</p> : null
-        )
-      })
+          );
+      });
   }
 
   function loadNotes() {
@@ -53,7 +49,6 @@ export default function Recipe(props) {
     return notes.filter((recipe) => recipe.recipe !== undefined)
   }
 
-  console.log("Saved from RECIPE", savedRecipes)
   return (
       <Panel className="recipe-panel">
         <Panel.Body>
@@ -89,7 +84,7 @@ export default function Recipe(props) {
                 {recipe.extendedIngredients.map((ingredient, i) => {
                   return(
                     <ListGroupItem key={i}>{ingredient.original}</ListGroupItem>
-                  )
+                    )
                 })}
               </ListGroup>
             </Panel.Body>
@@ -99,6 +94,7 @@ export default function Recipe(props) {
             <Panel.Heading>
               <Panel.Title toggle><h3>Instructions</h3></Panel.Title>
             </Panel.Heading>
+
             <Panel.Body collapsible>
               <ListGroup>
                 {recipe.analyzedInstructions[0].steps.map(  (instruction, i) => {
@@ -109,10 +105,10 @@ export default function Recipe(props) {
                   )})}
               </ListGroup>
             </Panel.Body>
+
           </Panel>
 
         </Panel.Body>
-
       </Panel>
   )
 }
