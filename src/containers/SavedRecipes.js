@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { API } from "aws-amplify";
 import "./SavedRecipes.css";
 
-export default function SavedRecipes() {
-  const [ savedRecipes, setSavedRecipes] = useState([]);
+export default function SavedRecipes(props) {
+  const [ savedRecipes, setSavedRecipes] = useState(props.savedRecipes);
 
   useEffect(() => {
     async function onLoad() {
@@ -61,7 +61,7 @@ export default function SavedRecipes() {
                     </div>
                     <div className="recipe-search-heart">
                       <button className="heart-button" onClick={() => updateSavedRecipes(recipe)}>
-                        <Heart savedRecipes={savedRecipes} recipe={recipe}/>
+                        <Heart updateSavedRecipes={props.updateSavedRecipes} savedRecipes={savedRecipes} recipe={recipe}/>
                       </button>
                     </div>
                   </div>
