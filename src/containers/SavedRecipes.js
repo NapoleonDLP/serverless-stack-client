@@ -3,6 +3,7 @@ import { Thumbnail, Col, Row} from "react-bootstrap";
 import Heart from "../components/HeartButton.js";
 import { Link } from "react-router-dom";
 import { API } from "aws-amplify";
+import "./SavedRecipes.css";
 
 export default function SavedRecipes() {
   const [ savedRecipes, setSavedRecipes] = useState([]);
