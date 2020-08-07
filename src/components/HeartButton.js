@@ -23,7 +23,7 @@ export default function Heart (props) {
   });
 
   function isSaved() {
-    var currId = currentRecipe.recipe.id === undefined ? currentRecipe.recipeId : currentRecipe.recipe.id;
+    var currId = currentRecipe.recipe === undefined ? currentRecipe.recipeId : currentRecipe.recipe.id;
     for (var i = 0; i < savedRecipes.length; i++) {
       if (savedRecipes[i].recipeId === currId) {
         setSaved(true);
