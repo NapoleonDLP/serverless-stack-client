@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Thumbnail, Col, Row} from "react-bootstrap";
 import Heart from "../components/HeartButton.js";
 import { Link } from "react-router-dom";
-// import { onError } from "../libs/errorLib";
 import { API } from "aws-amplify";
 
 export default function SavedRecipes() {
@@ -13,10 +12,8 @@ export default function SavedRecipes() {
       try {
         let notes = await loadNotes();
         setSavedRecipes(filterRecipes(notes));
-
       } catch (e) {
-        // onError(e);
-        console.log("Error in Saved Recipe:", e)
+        console.error(e)
       }
     }
 
@@ -31,6 +28,10 @@ export default function SavedRecipes() {
     return notes.filter((recipe) => recipe.recipe !== undefined)
   }
 
+  function updateSavedRecipes(currentRecipe) {
+    let filteredRecipes = savedRecipes.filter((recipe) => recipe.noteId !== currentRecipe.noteId);
+    setSavedRecipes(filteredRecipes);
+  }
 
   return (
     <Row>
@@ -58,7 +59,9 @@ export default function SavedRecipes() {
                       <small id="calories">{recipe.recipe.nutrition ? `Cal ${Math.trunc(recipe.recipe.nutrition.nutrients[0].amount)}` : "Cal 150"}</small>
                     </div>
                     <div className="recipe-search-heart">
-                      <Heart savedRecipes={savedRecipes} recipe={recipe}/>
+                      <button className="heart-button" onClick={() => updateSavedRecipes(recipe)}>
+                        <Heart savedRecipes={savedRecipes} recipe={recipe}/>
+                      </button>
                     </div>
                   </div>
                 </div>
