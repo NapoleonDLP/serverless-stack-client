@@ -37,6 +37,7 @@ export default function Heart (props) {
   async function deleteRecipe() {
     setSaved(false);
     await API.del("notes", `/notes/${currentRecipe.noteId}`);
+    props.updateSavedRecipes(currentRecipe, saved);
   }
 
   async function saveRecipe() {
@@ -44,10 +45,14 @@ export default function Heart (props) {
     let savedImage = null;
     let recipeId = currentRecipe.id;
     let recipe = currentRecipe;
-    setSaved(!saved);
-    await API.post("notes", "/saveRecipe", {
+    const updatedRecipe = await API.post("notes", "/saveRecipe", {
       body: {savedNotes, savedImage, recipeId, recipe}
     })
+
+    if (props.updateSavedRecipes) {
+      props.updateSavedRecipes(updatedRecipe, saved);
+    }
+    setSaved(!saved);
   }
 
     async function handleDelete (event) {
