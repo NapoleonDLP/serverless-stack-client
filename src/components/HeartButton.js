@@ -4,7 +4,7 @@ import "./HeartButton.css";
 import { API } from "aws-amplify";
 
 export default function Heart (props) {
-  const [ currentRecipe, setCurrentRecipe ] = useState(props.recipe);
+  const [ currentRecipe ] = useState(props.recipe);
   const [ savedRecipes, setSavedRecipes] = useState(props.savedRecipes);
   const [ saved, setSaved] = useState(false);
 
