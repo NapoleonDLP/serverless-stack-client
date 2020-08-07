@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./RecipeSearch.css";
 import { Thumbnail, Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { onError } from "../libs/errorLib";
 import { useAppContext } from "../libs/contextLib";
 import Heart from "../components/HeartButton.js";
 
