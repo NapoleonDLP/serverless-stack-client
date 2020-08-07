@@ -42,7 +42,7 @@ export default function SavedRecipes() {
           return recipe.recipe ? (
             <Col xs={6} md={4}>
               <Thumbnail>
-                <div key={i} onClick={() => console.log(`${recipe.recipe.title} was clicked!`)} id="recipe">
+                <div key={i} id="recipe">
                   <Link to={{pathname:`recipes/${recipe.recipe.id}`, state: recipe.recipe}}>
                     <img alt="" src={`${recipe.recipe.image}`}></img>
                     <h3 title={recipe.recipe.title} id="grid-recipe-title">{recipe.recipe.title}</h3>
