@@ -17,7 +17,7 @@ export default function RecipeSearch(props) {
         try {
           await retrieveRecipes("delightful", 3);
         } catch (e) {
-          onError(e);
+          console.error(e)
         }
       }
 
@@ -28,7 +28,6 @@ export default function RecipeSearch(props) {
     return await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${keywords}&addRecipeInformation=true&number=${resultCount}&instructionsRequired=true&fillIngredients=true&addRecipeNutrition=true`)
     .then((data) => data.json())
     .then((recipes) => {
-      console.log("Searched data:", recipes.results)
       setRecipes(recipes.results);
     })
   }
