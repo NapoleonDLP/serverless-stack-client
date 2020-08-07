@@ -5,7 +5,7 @@ import { API } from "aws-amplify";
 import { onError } from "../libs/errorLib";
 
 export default function Heart (props) {
-  const currentRecipe = props.recipe;
+  const [ currentRecipe, setCurrentRecipe ] = useState(props.recipe);
   const [ savedRecipes, setSavedRecipes] = useState(props.savedRecipes);
   const [ saved, setSaved] = useState(false);
 
@@ -38,25 +38,24 @@ export default function Heart (props) {
     return false;
   }
 
-  function deleteRecipe() {
-    console.log("Delete Recipe:", currentRecipe.noteId)
-
-    return API.del("notes", `/notes/${currentRecipe.noteId}`);
+  async function deleteRecipe() {
+    setSaved(false);
+    await API.del("notes", `/notes/${currentRecipe.noteId}`);
+    // setSaved(deleted.status);
   }
 
-  // function logRecipe() {
-  //   console.log('CURR CURR id:', currentRecipe.id, "CUR CUR recipeId", currentRecipe.recipeId, "saved", savedRecipes)
-  // }
-
-  function saveRecipe() {
+  async function saveRecipe() {
     let savedNotes = null;
     let savedImage = null;
     let recipeId = currentRecipe.id;
     let recipe = currentRecipe;
     setSaved(!saved);
-    return API.post("notes", "/saveRecipe", {
+    await API.post("notes", "/saveRecipe", {
       body: {savedNotes, savedImage, recipeId, recipe}
-    })}
+    })
+
+    // setCurrentRecipe(savedRecipe);
+  }
 
     async function handleDelete (event) {
       // event.preventDefault();
