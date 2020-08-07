@@ -20,10 +20,6 @@ letter-spacing: 0;
     box-shadow: 0 4px 10px darkorange, 0 0 1px orange inset;
 }
 
-/* .searchContainer {
-  margin: center;
-} */
-
 #grid-recipe-title {
   color: black;
   text-overflow: ellipsis;
