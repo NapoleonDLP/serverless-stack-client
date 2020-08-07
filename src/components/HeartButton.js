@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Glyphicon } from "react-bootstrap";
 import "./HeartButton.css";
 import { API } from "aws-amplify";
-import { onError } from "../libs/errorLib";
 
 export default function Heart (props) {
   const [ currentRecipe, setCurrentRecipe ] = useState(props.recipe);
@@ -16,9 +15,7 @@ export default function Heart (props) {
         setSaved(found);
         setSavedRecipes(props.savedRecipes);
       } catch(e) {
-        console.log("Error in HeartButton:", e)
-        // console.log("Current", currentRecipe, "Saved:", savedRecipes)
-        // onError(e)
+        console.error(e);
       }
     }
 
@@ -28,7 +25,6 @@ export default function Heart (props) {
   function isSaved() {
     var currId = currentRecipe.recipe.id === undefined ? currentRecipe.recipeId : currentRecipe.recipe.id;
     for (var i = 0; i < savedRecipes.length; i++) {
-      // console.log("each saved:",savedRecipes[i].recipeId, "current:", currentRecipe.recipeId || currentRecipe.id)
       if (savedRecipes[i].recipeId === currId) {
         setSaved(true);
         return true;
@@ -41,7 +37,6 @@ export default function Heart (props) {
   async function deleteRecipe() {
     setSaved(false);
     await API.del("notes", `/notes/${currentRecipe.noteId}`);
-    // setSaved(deleted.status);
   }
 
   async function saveRecipe() {
@@ -53,33 +48,21 @@ export default function Heart (props) {
     await API.post("notes", "/saveRecipe", {
       body: {savedNotes, savedImage, recipeId, recipe}
     })
-
-    // setCurrentRecipe(savedRecipe);
   }
 
     async function handleDelete (event) {
-      // event.preventDefault();
-      console.log("EVENT", event)
-
       try {
         await deleteRecipe();
-        // history.push("/")
       } catch (e) {
-        console.log("ERROR:", e)
-        // onError(e);
+        console.error(e);
       }
     }
 
   async function handleSave (event) {
-    // event.preventDefault();
-    console.log("EVENT", event)
-
     try {
       await saveRecipe();
-      // history.push("/")
     } catch (e) {
-      console.log("ERROR:", e)
-      onError(e);
+      console.error(e)
     }
   }
 
@@ -87,7 +70,6 @@ export default function Heart (props) {
     <div className={ saved ? "red" : "orange"}>
       <Glyphicon
         onClick={ saved ? handleDelete : handleSave }
-        // onClick={logRecipe}
         bsClass="glyphicon"
         glyph="heart" />
     </div>
