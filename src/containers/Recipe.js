@@ -25,6 +25,26 @@ export default function Recipe(props) {
     onLoad();
   }, [])
 
+  function renderTags() {
+    const tags = [
+      ["Budget Meal", "cheap"],
+      ["Dairy Free", "dairyFree"],
+      ["Gluten Free", "glutenFree"],
+      ["Vegan", "vegan"],
+      ["Vegetarian", "vegetarian"],
+      ["Popular", "veryPopular"]
+    ]
+      console.log(recipe)
+      return tags.map((tag, i) => {
+        console.log(i, recipe[tag[1]])
+        let color = recipe[tag[1]] ? "orange" : "grey";
+        console.log("COLOR", color)
+        return (
+          recipe[tag[1]] ? <p className={`tags tags-each ${color}`}>{tag[0]}</p> : null
+        )
+      })
+  }
+
   function loadNotes() {
     return API.get("notes", "/notes");
   }
@@ -38,9 +58,9 @@ export default function Recipe(props) {
       <Panel className="recipe-panel">
         <Panel.Body>
           <div className="title-image">
-            <div id="recipe-title">
-              <Panel.Title><h2>{recipe.title}</h2></Panel.Title>
-              <h6 className="author">{`By ${recipe.sourceName}`}</h6>
+            <div id="recipe-info">
+              <h6 id="recipe-author" className="author">{`${recipe.sourceName}`}</h6>
+              <Panel.Title><h2 id="recipe-title">{recipe.title}</h2></Panel.Title>
               <p id="summary">{recipe.summary.replace(/(<([^>]+)>)/ig, '')}</p>
             </div>
 
@@ -51,6 +71,14 @@ export default function Recipe(props) {
               <img width={"100%"} height={"100%"} alt={recipe.title} src={`${recipe.image}`}></img>
             </div>
           </div>
+
+          <div className="tags-container">
+            {renderTags()}
+          <div className="likes-box tags-each" id="likes">
+            <Badge className="aggregateLikes">{recipe.aggregateLikes}</Badge>
+            <p className="aggregateLikes">Likes</p>
+          </div>
+        </div>
 
           <Panel>
             <Panel.Heading>
@@ -84,14 +112,6 @@ export default function Recipe(props) {
           </Panel>
 
         </Panel.Body>
-
-        <div className="tags-container">
-          <div id="likes">
-            <Badge className="aggregateLikes">{recipe.aggregateLikes}</Badge>
-            <p className="aggregateLikes">Likes</p>
-          </div>
-            <p className="tags">Dairy free</p>
-        </div>
 
       </Panel>
   )
