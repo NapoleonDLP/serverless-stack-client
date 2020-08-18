@@ -31,7 +31,6 @@ export default function Heart (props) {
       }
     }
     setSaved(false);
-    console.log("isSaved = false", currId);
     return false;
   }
 
@@ -59,7 +58,6 @@ export default function Heart (props) {
   }
 
     async function handleDelete (event) {
-      console.log("Handle Delete Props:",props);
       try {
         await deleteRecipe();
       } catch (e) {
@@ -68,7 +66,6 @@ export default function Heart (props) {
     }
 
   async function handleSave (event) {
-    console.log("Handle Save Props:",props)
     try {
       await saveRecipe();
     } catch (e) {
