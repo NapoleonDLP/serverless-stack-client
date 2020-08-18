@@ -6,7 +6,7 @@ import { API } from "aws-amplify";
 export default function Heart (props) {
   const [ currentRecipe ] = useState(props.recipe);
   const [ savedRecipes, setSavedRecipes] = useState(props.savedRecipes);
-  const [ saved, setSaved] = useState(false);
+  const [ saved, setSaved] = useState();
 
   useEffect(() => {
     async function onLoad() {
@@ -23,7 +23,7 @@ export default function Heart (props) {
   });
 
   function isSaved() {
-    var currId = currentRecipe.recipe === undefined ? currentRecipe.recipeId : currentRecipe.recipe.id;
+    var currId = currentRecipe.id === undefined ? currentRecipe.recipeId : currentRecipe.id;
     for (var i = 0; i < savedRecipes.length; i++) {
       if (savedRecipes[i].recipeId === currId) {
         setSaved(true);
@@ -31,13 +31,16 @@ export default function Heart (props) {
       }
     }
     setSaved(false);
+    console.log("isSaved = false", currId);
     return false;
   }
 
   async function deleteRecipe() {
     setSaved(false);
     await API.del("notes", `/notes/${currentRecipe.noteId}`);
-    props.updateSavedRecipes(currentRecipe, saved);
+    if (props.updateSavedRecipes) {
+      props.updateSavedRecipes(currentRecipe, saved);
+    }
   }
 
   async function saveRecipe() {
@@ -52,10 +55,11 @@ export default function Heart (props) {
     if (props.updateSavedRecipes) {
       props.updateSavedRecipes(updatedRecipe, saved);
     }
-    setSaved(!saved);
+    setSaved(true);
   }
 
     async function handleDelete (event) {
+      console.log("Handle Delete Props:",props);
       try {
         await deleteRecipe();
       } catch (e) {
@@ -64,6 +68,7 @@ export default function Heart (props) {
     }
 
   async function handleSave (event) {
+    console.log("Handle Save Props:",props)
     try {
       await saveRecipe();
     } catch (e) {
