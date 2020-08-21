@@ -4,6 +4,7 @@ import { Badge, Panel, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Recipe.css";
 import Heart from "../components/HeartButton.js";
 import { API } from "aws-amplify";
+import Restaurants from "./Restaurants.js";
 
 export default function Recipe(props) {
   var history = useHistory();
@@ -109,6 +110,9 @@ export default function Recipe(props) {
           </Panel>
 
         </Panel.Body>
+      <div>
+        <Restaurants recipe={recipe}/>
+      </div>
       </Panel>
   )
 }
