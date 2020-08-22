@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { API } from "aws-amplify";
+import "./Restaurants.css";
 
 export default function Restaurants(props) {
   const [ coords, setCoords ] = useState(null);
@@ -43,8 +44,16 @@ export default function Restaurants(props) {
       <h3>{coords ? updateRestaurants : "LOADING..."}</h3>
       <h3>{restaurants ? (restaurants.businesses.map((restaurant) => {
         return (
-          <div>
-            <small>{restaurant.alias}</small>
+          <div className="restaurants_container">
+            <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
+            <div className="restaurant_tags">
+              <small>{restaurant.name}</small>
+              <small><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></small>
+              <small>{restaurant.is_closed ? "Open" : "Closed"}</small>
+              <small>{restaurant.price}</small>
+              <small>{restaurant.rating}</small>
+              <small>{restaurant.review_count + " reviews"}</small>
+            </div>
           </div>
           )})) : null}</h3>
     </div>
