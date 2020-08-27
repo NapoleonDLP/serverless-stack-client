@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { API } from "aws-amplify";
 import "./Restaurants.css";
+import YelpStars from "../components/YelpStars.js";
 
 export default function Restaurants(props) {
   const [ coords, setCoords ] = useState(null);
@@ -62,7 +63,7 @@ export default function Restaurants(props) {
               <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
               <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
               <p>{restaurant.price}</p>
-              <p>{restaurant.rating}</p>
+              <div>{YelpStars(restaurant.rating)}</div>
               <p>{restaurant.review_count + " reviews"}</p>
             </div>
           </div>
