@@ -10,8 +10,6 @@ export default function Restaurants(props) {
     async function onLoad() {
       try {
         await usersLocation();
-        // let results = await retrieveRestaurants();
-        // setRestaurants(results);
       } catch (e) {
         console.log("error in restaurants:", e)
       }
@@ -20,6 +18,20 @@ export default function Restaurants(props) {
     onLoad()
 
   }, []);
+
+  useEffect(() => {
+    async function whenCoords() {
+      try {
+        let results = await retrieveRestaurants();
+        setRestaurants(results);
+      } catch (e) {
+        console.log("error in restaurants:", e);
+      }
+    }
+
+    whenCoords();
+
+  }, coords)
 
   async function usersLocation () {
     await navigator.geolocation.getCurrentPosition((pos) => {
@@ -40,22 +52,23 @@ export default function Restaurants(props) {
 
   return (
     <div>
-      <button onClick={updateRestaurants}>Missing an ingredient? Changed your mind about cooking tonight?</button>
-      <h3>{coords ? updateRestaurants : "LOADING..."}</h3>
-      <h3>{restaurants ? (restaurants.businesses.map((restaurant) => {
+    <h3>Missing ingredients? Too tired to cook?</h3>
+    <h3>Heart this recipe for later and give these local establishments a shot!</h3>
+      {restaurants ? (
+        restaurants.businesses.map((restaurant) => {
         return (
           <div className="restaurants_container">
             <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
             <div className="restaurant_tags">
-              <small>{restaurant.name}</small>
-              <small><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></small>
-              <small>{restaurant.is_closed ? "Open" : "Closed"}</small>
-              <small>{restaurant.price}</small>
-              <small>{restaurant.rating}</small>
-              <small>{restaurant.review_count + " reviews"}</small>
+              <p>{restaurant.name}</p>
+              <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
+              <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
+              <p>{restaurant.price}</p>
+              <p>{restaurant.rating}</p>
+              <p>{restaurant.review_count + " reviews"}</p>
             </div>
           </div>
-          )})) : null}</h3>
+          )})) : "Loading local favorites"}
     </div>
   )
 }
