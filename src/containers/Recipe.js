@@ -51,6 +51,7 @@ export default function Recipe(props) {
   }
 
   return (
+    <div>
       <Panel className="recipe-panel">
         <Panel.Body>
           <div className="title-image">
@@ -110,9 +111,10 @@ export default function Recipe(props) {
           </Panel>
 
         </Panel.Body>
+      </Panel>
       <div>
         <Restaurants recipe={recipe}/>
       </div>
-      </Panel>
+    </div>
   )
 }
