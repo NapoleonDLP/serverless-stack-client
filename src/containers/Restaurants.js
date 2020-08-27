@@ -20,6 +20,13 @@ export default function Restaurants(props) {
   }, []);
 
   useEffect(() => {
+
+    async function retrieveRestaurants() {
+      let results = await API.get("notes", `/restaurants?latitude=${coords.latitude}&longitude=${coords.longitude}&term=${props.recipe.title}`);
+      console.log("Results:", results);
+      return results;
+    }
+
     async function whenCoords() {
       try {
         let results = await retrieveRestaurants();
@@ -31,7 +38,7 @@ export default function Restaurants(props) {
 
     whenCoords();
 
-  }, coords)
+  }, [coords, props.recipe.title])
 
   async function usersLocation () {
     await navigator.geolocation.getCurrentPosition((pos) => {
@@ -39,11 +46,7 @@ export default function Restaurants(props) {
     });
   };
 
-  async function retrieveRestaurants() {
-    let results = await API.get("notes", `/restaurants?latitude=${coords.latitude}&longitude=${coords.longitude}&term=${props.recipe.title}`);
-    console.log("Results:", results);
-    return results;
-  }
+
 
   return (
     <div>
