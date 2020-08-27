@@ -45,11 +45,6 @@ export default function Restaurants(props) {
     return results;
   }
 
-  async function updateRestaurants() {
-    let update = await retrieveRestaurants();
-    setRestaurants(update);
-  }
-
   return (
     <div>
     <h3>Missing ingredients? Too tired to cook?</h3>
