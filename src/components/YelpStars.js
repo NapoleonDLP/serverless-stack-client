@@ -26,6 +26,6 @@ export default function YelpStars (rating) {
   }
 
   return (
-    <img alt="Rating Not Found" src={ratings[rating]}/>
+    <img id="yelp_stars" alt="Rating Not Found" src={ratings[rating]}/>
   )
 }
