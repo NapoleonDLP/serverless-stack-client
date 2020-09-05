@@ -52,21 +52,23 @@ export default function Restaurants(props) {
   return (
     <div>
     <h3>Missing ingredients? Too tired to cook?</h3>
-    <h3>Heart this recipe for later and give these local establishments a shot!</h3>
+    {restaurants ? (<h5>Heart this recipe for later and give these local establishments a shot!</h5>) : null}
       {restaurants ? (
         restaurants.businesses.map((restaurant) => {
         return (
-          <div className="restaurants_container">
-            <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
-            <div className="restaurant_tags">
-              <p>{restaurant.name}</p>
-              <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
-              <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
-              <p>{restaurant.price}</p>
-              <div>{YelpStars(restaurant.rating)}</div>
-              <p>{restaurant.review_count + " reviews"}</p>
+          <button href={restaurant.url}>
+            <div className="restaurants_container">
+              <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
+              <div className="restaurant_tags">
+                <p>{restaurant.name}</p>
+                <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
+                <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
+                <p>{restaurant.price}</p>
+                <div>{YelpStars(restaurant.rating)}</div>
+                <p>{restaurant.review_count + " reviews"}</p>
+              </div>
             </div>
-          </div>
+          </button>
           )})) : "Loading local favorites"}
     </div>
   )
