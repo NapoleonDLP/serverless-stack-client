@@ -56,7 +56,7 @@ export default function Restaurants(props) {
       {restaurants ? (
         restaurants.businesses.map((restaurant) => {
         return (
-          <button href={restaurant.url}>
+          <a href={restaurant.url}>
             <div className="restaurants_container">
               <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
               <div className="restaurant_tags">
@@ -68,7 +68,7 @@ export default function Restaurants(props) {
                 <p>{restaurant.review_count + " reviews"}</p>
               </div>
             </div>
-          </button>
+          </a>
           )})) : "Loading local favorites"}
     </div>
   )
