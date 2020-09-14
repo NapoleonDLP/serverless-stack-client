@@ -67,7 +67,7 @@ export default function Restaurants(props) {
                       <p id="restaurant_name">{(i+1) + '. ' + restaurant.name}</p>
                       <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
                       <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
-            <p>{restaurant.price} • {restaurant.categories.map((category, i) => (i < 3) ? (category.title + ", ") : category.title)}</p>
+            <p>{restaurant.price} • {restaurant.categories.map((category, i) => (i+1 < restaurant.categories.length) ? (category.title + ", ") : category.title)}</p>
                       <div>{YelpStars(restaurant.rating)}</div>
                       <p>{restaurant.review_count + " reviews"}</p>
                     </div>
