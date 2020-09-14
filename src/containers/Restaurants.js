@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { API } from "aws-amplify";
 import "./Restaurants.css";
 import YelpStars from "../components/YelpStars.js";
+import { Panel } from "react-bootstrap"
 
 export default function Restaurants(props) {
   const [ coords, setCoords ] = useState(null);
@@ -50,26 +51,32 @@ export default function Restaurants(props) {
 
 
   return (
-    <div>
-    <h3>Missing ingredients? Too tired to cook?</h3>
-    {restaurants ? (<h5>Heart this recipe for later and give these local establishments a shot!</h5>) : null}
-      {restaurants ? (
-        restaurants.businesses.map((restaurant) => {
-        return (
-          <a href={restaurant.url}>
-            <div className="restaurants_container">
-              <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
-              <div className="restaurant_tags">
-                <p>{restaurant.name}</p>
-                <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
-                <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
-                <p>{restaurant.price}</p>
-                <div>{YelpStars(restaurant.rating)}</div>
-                <p>{restaurant.review_count + " reviews"}</p>
-              </div>
-            </div>
-          </a>
-          )})) : "Loading local favorites"}
-    </div>
+    <Panel>
+      <Panel.Body>
+        <div className="restaurants_component">
+        <h3>Missing ingredients? Too tired to cook?</h3>
+        {restaurants ? (<h5>Heart this recipe for later and give these local establishments a shot!</h5>) : null}
+          {restaurants ? (
+            restaurants.businesses.map((restaurant, i) => {
+            return (
+              <Panel>
+                <a id="restaurant_link" href={restaurant.url}>
+                  <div className="restaurants_container">
+                    <img id="restaurant_img" alt="" src={restaurant.image_url}></img>
+                    <div className="restaurant_tags">
+                      <p id="restaurant_name">{(i+1) + '. ' + restaurant.name}</p>
+                      <p><a href={"tel:" + restaurant.phone}>{restaurant.display_phone}</a></p>
+                      <p>{restaurant.is_closed ? "Open" : "Closed"}</p>
+            <p>{restaurant.price} • {restaurant.categories.map((category, i) => (i < 3) ? (category.title + ", ") : category.title)}</p>
+                      <div>{YelpStars(restaurant.rating)}</div>
+                      <p>{restaurant.review_count + " reviews"}</p>
+                    </div>
+                  </div>
+                </a>
+              </Panel>
+              )})) : "Loading local favorites"}
+        </div>
+      </Panel.Body>
+    </Panel>
   )
 }

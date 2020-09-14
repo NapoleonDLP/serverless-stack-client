@@ -1,10 +1,19 @@
-/* .restaurants_container {
+.restaurants_container {
+  display: flex;
+}
+
+/* .restaurants_component {
 
 } */
+#restaurant_link {
+  text-decoration: none;
+  color: black;
+}
 
 #restaurant_img {
   width: 200px;
   height: auto;
+  margin: 10px 10px;
 }
 
 #yelp_stars {
@@ -12,7 +21,12 @@
   height: auto;
 }
 
-/* .restaurant_tags {
+.restaurant_tags {
+  margin: 15px 15px;
+}
 
-} */
+#restaurant_name {
+  font-size: large;
+  font-weight: bolder;
+}
 
